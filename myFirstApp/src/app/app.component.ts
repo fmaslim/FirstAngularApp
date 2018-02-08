@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { sayHello } from '../joke/hello';
 
 // Decorator
 function lesson (target) {
+  // This is used to dynamically add a property to the target class that this decorates.
+  // In this case, it adds a function called lesson into the target class, and returns a string "Angular 2"
   Object.defineProperty(target.prototype, 'lesson', {value: () => 'Angular 2'});
 }
 
@@ -49,6 +52,27 @@ class Student extends Person {
   }
 }
 
+// How do we pass arguments to a decorator like @Component?
+// By creating a function that returns a decorator
+function ToDoTask(config) {
+  return function(target) {
+    Object.defineProperty(target.prototype, 'GetToDoTask', { value: () => config.ToDoTask });
+    Object.defineProperty(target.prototype, 'GetCompletedTask', { value: () => config.CompletedTask });
+  };
+}
+
+@ToDoTask({
+  ToDoTask: 'Learn Angular 2',
+  CompletedTask: 'Set up Angular/Node development server'
+})
+class MyTask {
+  task: string;
+
+  constructor (aTask) {
+    this.task = aTask;
+  }
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -59,5 +83,13 @@ export class AppComponent {
 
   p = new Student('Franky', 'Maslim', 'Computer Science');
   name = this.p.whoAreYou();
+  lesson = this.p.lesson(); // This is weird. Even though it complains about lesson not existing, but it actually works
+
+  t = new MyTask('Angular 5');
+  currentTask = this.t.task;
+  todoTask = this.t.GetToDoTask();
+  completedTask = this.t.GetCompletedTask();
 }
+
+
 
