@@ -18,8 +18,15 @@
   </li>
 </ul>
 
+  <br />
+  <app-joke-form (jokeCreated)='addJoke($event)'></app-joke-form>
 
-<div>This is calling the new Person class
+  <br />
+  <p>Number of elements in jokes: {{ jokes.length }}</p>
+  <app-joke *ngFor='let j of jokes' [data]='j'></app-joke>
+
+  <br />
+  <div>This is calling the new Person class
 
   <p>The person's name is: {{ name }}</p>
   <p>The lesson this person is learning is {{ lesson }}</p>
@@ -28,5 +35,5 @@
   <p>To-do task: {{ todoTask }}</p>
   <p>Completed task: {{ completedTask }}</p>
 
-
+  <app-header></app-header>
 </div>

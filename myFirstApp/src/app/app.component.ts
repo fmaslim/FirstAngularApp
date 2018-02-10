@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { sayHello } from '../joke/hello';
+import { JokeComponent, Joke } from './joke/joke.component';
 
 // Decorator
 function lesson (target) {
@@ -89,6 +89,16 @@ export class AppComponent {
   currentTask = this.t.task;
   todoTask = this.t.GetToDoTask();
   completedTask = this.t.GetCompletedTask();
+
+  jokes: Joke[] = [
+    new Joke('Test 1', 'Test description 1'),
+    new Joke('Test 2', 'Test description 2')
+  ];
+
+  addJoke(joke: Joke) {
+      //this.jokes.push(new Joke('New Joke', 'A new joke has been added'));
+      this.jokes.push(new Joke(joke.UserID, joke.Username));
+  }
 }
 
 
