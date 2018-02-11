@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { JokeComponent, Joke } from './joke/joke.component';
 
 // Decorator
@@ -79,6 +79,11 @@ class MyTask {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  // Here, we prepend the 'jokeViewChild' property with a decorator of ViewChild
+  // This decorator tells Angular HOW to find the child component that we want to bind to this property//
+  // This means, search inside this component's template, its view, for this child component.
+  @ViewChild(JokeComponent) jokeViewChild: JokeComponent;
+
   title = 'The world of Angular 5';
 
   p = new Student('Franky', 'Maslim', 'Computer Science');
@@ -96,7 +101,6 @@ export class AppComponent {
   ];
 
   addJoke(joke: Joke) {
-      //this.jokes.push(new Joke('New Joke', 'A new joke has been added'));
       this.jokes.push(new Joke(joke.UserID, joke.Username));
   }
 }

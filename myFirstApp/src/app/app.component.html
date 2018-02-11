@@ -23,7 +23,14 @@
 
   <br />
   <p>Number of elements in jokes: {{ jokes.length }}</p>
-  <app-joke *ngFor='let j of jokes' [data]='j'></app-joke>
+  <app-joke *ngFor='let j of jokes' [data]='j'>
+    <h3 class="userID">{{ j.UserID }}</h3>
+    <h4 class="username">{{ j.Username }}</h4>
+  </app-joke>
+
+  <br />
+  <p>A new joke where OnInit is used</p>
+  <app-joke></app-joke>
 
   <br />
   <div>This is calling the new Person class

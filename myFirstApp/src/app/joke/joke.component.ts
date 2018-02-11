@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 
 export class Joke {
   UserID: string;
@@ -16,10 +16,17 @@ export class Joke {
   }
 }
 
+// ViewEncapsulation allows us to set the style of a component without it leaking outside the scope of the component
+// 3 enum values:
+// ViewEncapsulation.Native
+// ViewEncapsulation.Emulated -- default value.
+// ViewEncapsulation.None
+
 @Component({
   selector: 'app-joke',
   templateUrl: './joke.component.html',
-  styleUrls: ['./joke.component.css']
+  styleUrls: ['./joke.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class JokeComponent implements OnInit {
   @Input() data: Joke;
@@ -28,6 +35,6 @@ export class JokeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.data = new Joke('New Joke', 'Created OnInit');
   }
-
 }

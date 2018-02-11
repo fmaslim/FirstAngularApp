@@ -1,11 +1,13 @@
-<p>
+<div class="">
   joke works!
-</p>
 
-<div class="panel">
-  User ID: {{ data.UserID }}
-  <br />
-  Username: {{ data.Username }}
-  <br />
-  Hide: {{ data.Hide }}
+  <div>
+    User ID: <ng-content select='.userID'></ng-content>
+    <br />
+    Username: <ng-content select='.username'></ng-content>
+    <br />
+    Hide: {{ data.Hide }}
+  </div>
+
 </div>
+
