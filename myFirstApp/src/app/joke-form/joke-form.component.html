@@ -4,4 +4,37 @@
   <button type="button" class="btn btn-primary" (click)='createJoke()'>Add Joke</button>
 </p>
 
+<br />
+Number of fake people in array: {{ people.length }}
+<br />
+<ul *ngFor="let person of people">
+  <li class="directive-class" *ngIf="person.name === 'Facebook Inc' " appJokeDir>
+    Age: {{ person.age }}.
+    Name: {{ person.name }}
+  </li>
+</ul>
+
+<br />
+<ul *ngFor="let person of people" [ngSwitch]="person.name">
+  <li *ngSwitchCase="'Facebook Inc'">
+    <span [ngStyle]="{'color':'green'}">
+      Age: {{ person.age }}.
+      Name: {{ person.name }}
+    </span>
+  </li>
+  <li *ngSwitchCase="'Yahoo Inc'">
+      <span [ngStyle]="{'color':'red'}">
+        Age: {{ person.age }}.
+        Name: {{ person.name }}
+      </span>
+  </li>
+  <li *ngSwitchDefault>
+      <span [ngStyle]="{'color':'blue'}">
+        Age: {{ person.age }}.
+        Name: {{ person.name }}
+      </span>
+  </li>
+</ul>
+
+
 

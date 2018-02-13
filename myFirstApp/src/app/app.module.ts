@@ -6,13 +6,16 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { JokeComponent } from './joke/joke.component';
 import { JokeFormComponent } from './joke-form/joke-form.component';
+import { JokeDirDirective } from './Directives/jokeDir.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderComponent
+,
     JokeComponent,
-    JokeFormComponent
+    JokeFormComponent,
+    JokeDirDirective
 ],
   imports: [
     BrowserModule

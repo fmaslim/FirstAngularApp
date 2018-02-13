@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef, ContentChild, ContentChildren, AfterViewInit, AfterContentInit } from '@angular/core';
 import { JokeComponent, Joke } from './joke/joke.component';
 
 // Decorator
@@ -78,11 +78,18 @@ class MyTask {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit, AfterContentInit {
   // Here, we prepend the 'jokeViewChild' property with a decorator of ViewChild
   // This decorator tells Angular HOW to find the child component that we want to bind to this property//
   // This means, search inside this component's template, its view, for this child component.
   @ViewChild(JokeComponent) jokeViewChild: JokeComponent;
+  @ViewChild('header') headerElm: ElementRef;
+
+  // The above elements are the VIEW children of this component
+  // Here, we are referencing the CONTENT children of this component.
+  // These are the content children of this component that are PROJECTED into the component from the host component
+  @ContentChild(JokeComponent) jokeContentChild: JokeComponent;
+  @ContentChildren(JokeComponent) jokeContentChildren: JokeComponent;
 
   title = 'The world of Angular 5';
 
@@ -96,9 +103,52 @@ export class AppComponent {
   completedTask = this.t.GetCompletedTask();
 
   jokes: Joke[] = [
-    new Joke('Test 1', 'Test description 1'),
-    new Joke('Test 2', 'Test description 2')
+    new Joke('Test 100', 'Test description 100'),
+    new Joke('Test 200', 'Test description 200')
   ];
+
+  customers: any[] = [
+    {
+      country: 'USA',
+      people: [
+        {
+          name: 'John Doe'
+        },
+        {
+          name: 'Jane Doe'
+        },
+        {
+          name: 'John Smith'
+        }
+      ]
+    },
+    {
+      country: 'Indonesia',
+      people: [
+        {
+          name: 'David Maslim'
+        },
+        {
+          name: 'Franky Maslim'
+        },
+        {
+          name: 'Andrew Maslim'
+        }
+      ]
+    }
+  ];
+
+  ngAfterViewInit() {
+    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    // Add 'implements AfterViewInit' to the class.
+    this.headerElm.nativeElement.textContent = 'This header is set in AfterViewInit';
+  }
+
+  ngAfterContentInit() {
+    // Called after ngOnInit when the component's or directive's content has been initialized.
+    // Add 'implements AfterContentInit' to the class.
+
+  }
 
   addJoke(joke: Joke) {
       this.jokes.push(new Joke(joke.UserID, joke.Username));
