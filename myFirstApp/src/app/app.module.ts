@@ -7,6 +7,8 @@ import { HeaderComponent } from './header/header.component';
 import { JokeComponent } from './joke/joke.component';
 import { JokeFormComponent } from './joke-form/joke-form.component';
 import { JokeDirDirective } from './Directives/jokeDir.directive';
+import { RxObservableComponent } from './rx-observable/rx-observable.component';
+import { ModelDrivenFormComponent } from './model-driven-form/model-driven-form.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { JokeDirDirective } from './Directives/jokeDir.directive';
 ,
     JokeComponent,
     JokeFormComponent,
-    JokeDirDirective
+    JokeDirDirective,
+    RxObservableComponent,
+    ModelDrivenFormComponent
 ],
   imports: [
     BrowserModule
