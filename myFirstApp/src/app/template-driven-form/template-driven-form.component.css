@@ -1,0 +1,9 @@
+.has-danger input {
+  border: 2px solid Red;
+  background-color: pink;
+}
+
+.has-success input {
+  border: 2px solid green;
+  background-color: lightgreen;
+}

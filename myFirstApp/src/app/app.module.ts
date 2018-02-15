@@ -11,6 +11,7 @@ import { JokeFormComponent } from './joke-form/joke-form.component';
 import { JokeDirDirective } from './Directives/jokeDir.directive';
 import { RxObservableComponent } from './rx-observable/rx-observable.component';
 import { ModelDrivenFormComponent } from './model-driven-form/model-driven-form.component';
+import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { ModelDrivenFormComponent } from './model-driven-form/model-driven-form.
     JokeDirDirective
 ,
     RxObservableComponent,
-    ModelDrivenFormComponent,
+    ModelDrivenFormComponent
+,
+    TemplateDrivenFormComponent
 ],
   imports: [
     BrowserModule,

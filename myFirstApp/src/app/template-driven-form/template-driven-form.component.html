@@ -1,0 +1,64 @@
+<!-- The form below needs to be bound to the model in the component -->
+<!-- And that is done by using the binding property on the form [formGroup]="myForm" -->
+
+<form #f="ngForm" style="width: 50%; padding: 20px;">
+    <button type="submit" class="btn btn-primary">Submit Form</button>
+
+    <!-- First Name and Last Name -->
+    <fieldset>
+      <div class="form-group">
+        <label for="firstName">First Name: </label>
+        <input type="text"
+               class="form-control"
+               required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name: </label>
+        <input type="text"
+               id="lastName"
+               class="form-control"
+               required>
+      </div>
+    </fieldset>
+
+    <!-- Email -->
+    <div class="form-group" [ngClass]="{
+      'has-danger': email.invalid && email.dirty,
+      'has-success': email.valid && email.dirty }">
+      <label for="email">Email: </label>
+      <input type="text"
+             id="email"
+             class="form-control"
+             required>
+      <div class="form-control-feedback" *ngIf="email.invalid && email.dirty">
+        Email is invalid
+      </div>
+    </div>
+
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password: </label>
+      <input type="password"
+             id="password"
+             class="form-control"
+             required>
+      <div *ngIf="password.invalid && password.dirty">
+        <p *ngIf="password.errors.required">Password is required</p>
+        <p *ngIf="password.errors.minLength">Password must be longer than 5 characters</p>
+      </div>
+    </div>
+
+    <!-- Language dropdown -->
+    <div class="form-group">
+      <label for="language">Language: </label>
+      <select class="form-control">
+        <option value="">Please select a language</option>
+        <option *ngFor="let lang of languages" [value]="lang.ID">{{ lang.Name }}</option>
+      </select>
+    </div>
+
+    <pre>First name touched? {{ firstName.touched }}</pre>
+
+    <p>{{ languages | json }}</p>
+  </form>
