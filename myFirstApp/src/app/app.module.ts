@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+// This links the form model in a component with the HTML template
+import { ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
+import { ValidationErrors } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,12 +19,14 @@ import { ModelDrivenFormComponent } from './model-driven-form/model-driven-form.
 ,
     JokeComponent,
     JokeFormComponent,
-    JokeDirDirective,
+    JokeDirDirective
+,
     RxObservableComponent,
-    ModelDrivenFormComponent
+    ModelDrivenFormComponent,
 ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule, // this needs to be imported here, before Form can recognize [FormGroup] directive
   ],
   providers: [],
   bootstrap: [AppComponent]

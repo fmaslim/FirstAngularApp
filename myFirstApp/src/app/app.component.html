@@ -17,45 +17,5 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
-  <br />
-  <app-joke-form (jokeCreated)='addJoke($event)'></app-joke-form>
 
-  <br />
-  <ul>
-    <li *ngFor='let j of jokes; let i = index'>
-      {{ i + 1 }} - UserID: {{ j.UserID }}. Username: {{ j.Username }}
-    </li>
-  </ul>
-
-  <br />
-  <p>Looping through people (grouped)</p>
-  <ul *ngFor="let customer of customers">
-    <li>{{ customer.country }}</li>
-    <ul *ngFor="let person of customer.people">
-      <li>{{ person.name }}</li>
-    </ul>
-  </ul>
-
-  <br />
-  <p>Number of elements in jokes: {{ jokes.length }}</p>
-  <app-joke *ngFor='let j of jokes' [data]='j'>
-    <h3 class="userID">{{ j.UserID }}</h3>
-    <h4 class="username">{{ j.Username }}</h4>
-  </app-joke>
-
-  <br />
-  <p>A new joke where OnInit is used</p>
-  <app-joke></app-joke>
-
-  <br />
-  <div>This is calling the new Person class
-
-  <p>The person's name is: {{ name }}</p>
-  <p>The lesson this person is learning is {{ lesson }}</p>
-  <br />
-  <p>The current task is {{ currentTask }}</p>
-  <p>To-do task: {{ todoTask }}</p>
-  <p>Completed task: {{ completedTask }}</p>
-
-  <app-header></app-header>
-</div>
+<app-model-driven-form></app-model-driven-form>

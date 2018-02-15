@@ -95,12 +95,12 @@ export class AppComponent implements AfterViewInit, AfterContentInit {
 
   p = new Student('Franky', 'Maslim', 'Computer Science');
   name = this.p.whoAreYou();
-  lesson = this.p.lesson(); // This is weird. Even though it complains about lesson not existing, but it actually works
+  // lesson = this.p.lesson(); // This is weird. Even though it complains about lesson not existing, but it actually works
 
   t = new MyTask('Angular 5');
   currentTask = this.t.task;
-  todoTask = this.t.GetToDoTask();
-  completedTask = this.t.GetCompletedTask();
+  // todoTask = this.t.GetToDoTask();
+  // completedTask = this.t.GetCompletedTask();
 
   jokes: Joke[] = [
     new Joke('Test 100', 'Test description 100'),
