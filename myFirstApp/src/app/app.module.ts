@@ -30,6 +30,7 @@ import { TemplateDrivenFormComponent } from './template-driven-form/template-dri
   imports: [
     BrowserModule,
     ReactiveFormsModule, // this needs to be imported here, before Form can recognize [FormGroup] directive
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

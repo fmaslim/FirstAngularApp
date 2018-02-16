@@ -1,64 +1,77 @@
-<!-- The form below needs to be bound to the model in the component -->
-<!-- And that is done by using the binding property on the form [formGroup]="myForm" -->
+<!--
+  In template-driven approach, Angular creates the model, FormGroups and FormControls, for us via directives we add to the template.
+  Template-Driven Forms are just Model-Driven Forms but driven by directives in the template, versus code in the component.
+  In template-driven, we use directives to create the model.
+  In model-driven, we create a model in the component, and then use directives to map elements in the template to our form model.
+-->
 
-<form #f="ngForm" style="width: 50%; padding: 20px;">
-    <button type="submit" class="btn btn-primary">Submit Form</button>
+<form #f="ngForm" style="width: 50%; padding: 10px;">
 
-    <!-- First Name and Last Name -->
-    <fieldset>
-      <div class="form-group">
-        <label for="firstName">First Name: </label>
-        <input type="text"
-               class="form-control"
-               required>
-      </div>
-      <div class="form-group">
-        <label for="lastName">Last Name: </label>
-        <input type="text"
-               id="lastName"
-               class="form-control"
-               required>
-      </div>
-    </fieldset>
+  <button type="submit" class="btn btn-primary" (click)="OnSubmit()" [disabled]="f.invalid">Submit</button>
+  <p>
+    {{ onSubmitText }}
+  </p>
 
-    <!-- Email -->
-    <div class="form-group" [ngClass]="{
-      'has-danger': email.invalid && email.dirty,
-      'has-success': email.valid && email.dirty }">
-      <label for="email">Email: </label>
+  <pre>First Name: {{ firstName.value }}</pre>
+  <pre>Last Name: {{ lastName.value }}</pre>
+  <pre>Email: {{ email.value }}</pre>
+  <pre>Password: {{ password.value }}</pre>
+  <pre>Language: {{ language.value }}</pre>
+
+  <fieldset ngModelGroup="name">
+    <!-- FIRST NAME -->
+    <div class="form-group">
+      <label>First Name: </label>
       <input type="text"
-             id="email"
              class="form-control"
+             name="firstName"
+             [(ngModel)]="model.firstName"
+             #firstName="ngModel"
              required>
-      <div class="form-control-feedback" *ngIf="email.invalid && email.dirty">
-        Email is invalid
-      </div>
     </div>
-
-
-    <!-- Password -->
+    <!-- LAST NAME -->
     <div class="form-group">
-      <label for="password">Password: </label>
-      <input type="password"
-             id="password"
+      <label>Last Name:</label>
+      <input type="text"
              class="form-control"
-             required>
-      <div *ngIf="password.invalid && password.dirty">
-        <p *ngIf="password.errors.required">Password is required</p>
-        <p *ngIf="password.errors.minLength">Password must be longer than 5 characters</p>
-      </div>
+             name="lastName"
+             [(ngModel)]="model.lastName"
+             #lastName="ngModel">
     </div>
+  </fieldset>
 
-    <!-- Language dropdown -->
-    <div class="form-group">
-      <label for="language">Language: </label>
-      <select class="form-control">
-        <option value="">Please select a language</option>
-        <option *ngFor="let lang of languages" [value]="lang.ID">{{ lang.Name }}</option>
-      </select>
-    </div>
+  <!-- EMAIL -->
+  <div class="form-group">
+    <label>Email:</label>
+    <input type="text"
+           class="form-control"
+           name="email"
+           [(ngModel)]="model.email"
+           #email="ngModel"
+           required>
+  </div>
 
-    <pre>First name touched? {{ firstName.touched }}</pre>
+  <!-- PASSWORD -->
+  <div class="form-group">
+    <label>Password: </label>
+    <input type="text"
+           class="form-control"
+           name="password"
+           [(ngModel)]="model.password"
+           #password="ngModel"
+           required
+           minlength="5">
+  </div>
 
-    <p>{{ languages | json }}</p>
-  </form>
+  <!-- LANGUAGE -->
+  <div class="form-group">
+    <label>Language: </label>
+    <select class="form-control"
+            name="language"
+            [(ngModel)]="model.language"
+            #language="ngModel">
+      <option value="">Please select a language</option>
+      <option *ngFor="let language of langs" [value]="language">{{ language }}</option>
+    </select>
+  </div>
+</form>
