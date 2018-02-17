@@ -13,29 +13,30 @@ import { RxObservableComponent } from './rx-observable/rx-observable.component';
 import { ModelDrivenFormComponent } from './model-driven-form/model-driven-form.component';
 import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
 import { InjectorComponent, OtherService, SimpleService } from './injector/injector.component';
+import { InjectorProviderComponent, ChildComponent, ParentComponent } from './injector-provider/injector-provider.component';
+import { SimpleProviderService } from './injector-provider/injector-provider.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
-,
+    HeaderComponent,
     JokeComponent,
     JokeFormComponent,
-    JokeDirDirective
-,
+    JokeDirDirective,
     RxObservableComponent,
-    ModelDrivenFormComponent
-,
-    TemplateDrivenFormComponent
-,
-    InjectorComponent
+    ModelDrivenFormComponent,
+    TemplateDrivenFormComponent,
+    InjectorComponent,
+    InjectorProviderComponent,
+    ChildComponent,
+    ParentComponent
 ],
   imports: [
     BrowserModule,
     ReactiveFormsModule, // this needs to be imported here, before Form can recognize [FormGroup] directive
-    FormsModule // this needs to be imported here. Otherwise, the <form></form> tag will not be recognized.
+    FormsModule, // this needs to be imported here. Otherwise, the <form></form> tag will not be recognized.
   ],
-  providers: [OtherService, SimpleService], // these classes have to be imported in the import statement above
+  providers: [OtherService, SimpleService, SimpleProviderService], // these classes have to be imported in the import statement above
   bootstrap: [AppComponent]
 })
 export class AppModule { }
