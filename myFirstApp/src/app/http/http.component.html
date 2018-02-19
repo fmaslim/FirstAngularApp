@@ -1,0 +1,93 @@
+<div style="padding: 20px;">
+  <!-- GET ON ITUNES -->
+  <div class="row">
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="doGEToniTunes()">GET on iTunes</button>
+    </div>
+    <div>
+      Result: {{ doGEToniTunesText | json }}
+    </div>
+  </div>
+
+  <!-- GET -->
+  <div class="row">
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="doGET()">GET</button>
+    </div>
+    <div>
+      Result: {{ doGetText | json }}
+    </div>
+  </div>
+
+  <!-- POST -->
+  <div class="row">
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="doPOST()">POST</button>
+    </div>
+    <div>
+        Result: {{ doPostText }}
+    </div>
+  </div>
+
+  <!-- DELETE -->
+  <div class="row">
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="doDELETE()">DELETE</button>
+    </div>
+    <div>
+        Result: {{ doDeleteText }}
+    </div>
+  </div>
+
+  <!-- PUT -->
+  <div class="row">
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="doPUT()">PUT</button>
+    </div>
+    <div>
+        Result: {{ doPutText }}
+    </div>
+  </div>
+
+  <!-- GET AS PROMISE -->
+  <div class="row">
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="doGETasPromise()">GET as Promise</button>
+    </div>
+    <div>
+        Result: {{ doGETasPromiseText }}
+    </div>
+  </div>
+
+  <!-- GET AS PROMISE -->
+  <div class="row">
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="doGETasPromiseError()">GET as Promise Error</button>
+    </div>
+    <div>
+        Result: {{ doGETasPromiseErrorText }}
+    </div>
+  </div>
+
+  <!-- GET AS OBSERVABLE ERROR -->
+  <div class="row">
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="doGETasObservableError()">GET as Obserable Error</button>
+    </div>
+    <div>
+        Result: {{ doGETasObservableErrorText }}
+    </div>
+  </div>
+
+  <!-- GET WITH HEADERS -->
+  <div class="row">
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="doGETWithHeaders()">GET With Headers</button>
+    </div>
+    <div>
+        Result: {{ doGETWithHeadersText }}
+    </div>
+  </div>
+
+</div>
+

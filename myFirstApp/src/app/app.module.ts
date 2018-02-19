@@ -15,6 +15,8 @@ import { TemplateDrivenFormComponent } from './template-driven-form/template-dri
 import { InjectorComponent, OtherService, SimpleService } from './injector/injector.component';
 import { InjectorProviderComponent, ChildComponent, ParentComponent } from './injector-provider/injector-provider.component';
 import { SimpleProviderService } from './injector-provider/injector-provider.component';
+import { HttpComponent } from './http/http.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -29,12 +31,14 @@ import { SimpleProviderService } from './injector-provider/injector-provider.com
     InjectorComponent,
     InjectorProviderComponent,
     ChildComponent,
-    ParentComponent
+    ParentComponent,
+    HttpComponent
 ],
   imports: [
     BrowserModule,
     ReactiveFormsModule, // this needs to be imported here, before Form can recognize [FormGroup] directive
     FormsModule, // this needs to be imported here. Otherwise, the <form></form> tag will not be recognized.
+    HttpModule
   ],
   providers: [OtherService, SimpleService, SimpleProviderService], // these classes have to be imported in the import statement above
   bootstrap: [AppComponent]
