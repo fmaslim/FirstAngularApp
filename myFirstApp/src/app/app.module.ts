@@ -17,6 +17,7 @@ import { InjectorProviderComponent, ChildComponent, ParentComponent } from './in
 import { SimpleProviderService } from './injector-provider/injector-provider.component';
 import { HttpComponent } from './http/http.component';
 import { HttpModule } from '@angular/http';
+import { HttpPromiseComponent, SearchService } from './http-promise/http-promise.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HttpModule } from '@angular/http';
     InjectorProviderComponent,
     ChildComponent,
     ParentComponent,
-    HttpComponent
+    HttpComponent,
+    HttpPromiseComponent
 ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { HttpModule } from '@angular/http';
     FormsModule, // this needs to be imported here. Otherwise, the <form></form> tag will not be recognized.
     HttpModule
   ],
-  providers: [OtherService, SimpleService, SimpleProviderService], // these classes have to be imported in the import statement above
+  providers: [OtherService, SimpleService, SimpleProviderService],
+  // these classes have to be imported in the import statement above
   bootstrap: [AppComponent]
 })
 export class AppModule { }
