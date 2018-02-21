@@ -22,6 +22,30 @@ import { HttpObservableComponent } from './http-observable/http-observable.compo
 import { HttpJsonpComponent } from './http-jsonp/http-jsonp.component';
 import { Jsonp, JsonpModule, Response } from '@angular/http';
 
+import { Routes, RouterModule } from '@angular/router';
+
+// In order for Angular to display certain components based on the requested URL,
+// set up the mapping of URLs to Components via Route Configuration
+// which is an array like so:
+
+const routes: Routes = [
+  // For the special case of an empty URL, need to add pathMatch: 'full' property so Angular knows
+  // it should be matching exactly the empty string and not the partially empty string
+  { path: '', redirectTo: 'joke', pathMatch: 'full' },
+  { path: 'jsonp', redirectTo: 'httpjsonp' },
+  { path: 'joke', component: JokeComponent },
+  { path: 'injector', component: InjectorComponent },
+  { path: 'modeldriven', component: ModelDrivenFormComponent },
+  { path: 'templatedriven', component: TemplateDrivenFormComponent },
+  { path: 'http', component: HttpComponent },
+  { path: 'httppromise', component: HttpPromiseComponent },
+  { path: 'httpjsonp', component: HttpJsonpComponent },
+  // This is a catch-all route that gets directed to if there is no match for the requested route
+  { path: '**', component: HeaderComponent }
+];
+
+// Then, install the routes by importing RouterModule.forRoot(routes) into NgModule
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +70,8 @@ import { Jsonp, JsonpModule, Response } from '@angular/http';
     ReactiveFormsModule, // this needs to be imported here, before Form can recognize [FormGroup] directive
     FormsModule, // this needs to be imported here. Otherwise, the <form></form> tag will not be recognized.
     HttpModule,
-    JsonpModule
+    JsonpModule,
+    RouterModule.forRoot(routes, { useHash: true }) // useHash is for Path Location Strategies
   ],
   providers: [OtherService, SimpleService, SimpleProviderService],
   // these classes have to be imported in the import statement above
