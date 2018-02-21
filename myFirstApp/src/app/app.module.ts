@@ -19,6 +19,8 @@ import { HttpComponent } from './http/http.component';
 import { HttpModule } from '@angular/http';
 import { HttpPromiseComponent, SearchService } from './http-promise/http-promise.component';
 import { HttpObservableComponent } from './http-observable/http-observable.component';
+import { HttpJsonpComponent } from './http-jsonp/http-jsonp.component';
+import { Jsonp, JsonpModule, Response } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -36,17 +38,18 @@ import { HttpObservableComponent } from './http-observable/http-observable.compo
     ParentComponent,
     HttpComponent,
     HttpPromiseComponent,
-    HttpObservableComponent
+    HttpObservableComponent,
+    HttpJsonpComponent
 ],
   imports: [
     BrowserModule,
     ReactiveFormsModule, // this needs to be imported here, before Form can recognize [FormGroup] directive
     FormsModule, // this needs to be imported here. Otherwise, the <form></form> tag will not be recognized.
-    HttpModule
+    HttpModule,
+    JsonpModule
   ],
   providers: [OtherService, SimpleService, SimpleProviderService],
   // these classes have to be imported in the import statement above
-
   bootstrap: [AppComponent]
 })
 export class AppModule { }
