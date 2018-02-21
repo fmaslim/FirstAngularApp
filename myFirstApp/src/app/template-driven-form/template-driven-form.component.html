@@ -5,6 +5,8 @@
   In model-driven, we create a model in the component, and then use directives to map elements in the template to our form model.
 -->
 
+<app-nav-home></app-nav-home>
+
 <form #f="ngForm" style="width: 50%; padding: 10px;">
 
   <button type="submit" class="btn btn-primary" (click)="OnSubmit()" [disabled]="f.invalid">Submit</button>

@@ -21,8 +21,10 @@ import { HttpPromiseComponent, SearchService } from './http-promise/http-promise
 import { HttpObservableComponent } from './http-observable/http-observable.component';
 import { HttpJsonpComponent } from './http-jsonp/http-jsonp.component';
 import { Jsonp, JsonpModule, Response } from '@angular/http';
+import { NavHomeComponent } from './nav-home/nav-home.component';
 
 import { Routes, RouterModule } from '@angular/router';
+
 
 // In order for Angular to display certain components based on the requested URL,
 // set up the mapping of URLs to Components via Route Configuration
@@ -31,7 +33,8 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   // For the special case of an empty URL, need to add pathMatch: 'full' property so Angular knows
   // it should be matching exactly the empty string and not the partially empty string
-  { path: '', redirectTo: 'joke', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: NavHomeComponent },
   { path: 'jsonp', redirectTo: 'httpjsonp' },
   { path: 'joke', component: JokeComponent },
   { path: 'injector', component: InjectorComponent },
@@ -63,7 +66,8 @@ const routes: Routes = [
     HttpComponent,
     HttpPromiseComponent,
     HttpObservableComponent,
-    HttpJsonpComponent
+    HttpJsonpComponent,
+    NavHomeComponent
 ],
   imports: [
     BrowserModule,
@@ -75,6 +79,7 @@ const routes: Routes = [
   ],
   providers: [OtherService, SimpleService, SimpleProviderService],
   // these classes have to be imported in the import statement above
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
