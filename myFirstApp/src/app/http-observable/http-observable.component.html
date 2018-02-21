@@ -1,0 +1,17 @@
+<form class="form-inline">
+  <div class="form-group">
+    <input type="search"
+           class="form-control"
+           placeholder="Enter search string"
+           [formControl]="searchField">
+  </div>
+
+</form>
+
+<ul>
+  <li *ngFor="let item of results | async as list">
+    <img [src]="item.thumbnail"> -
+    <a href="{{ item.link }}">{{ item.name }}</a>
+    by {{ item.artist }}
+  </li>
+</ul>

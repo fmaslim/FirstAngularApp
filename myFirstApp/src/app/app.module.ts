@@ -18,6 +18,7 @@ import { SimpleProviderService } from './injector-provider/injector-provider.com
 import { HttpComponent } from './http/http.component';
 import { HttpModule } from '@angular/http';
 import { HttpPromiseComponent, SearchService } from './http-promise/http-promise.component';
+import { HttpObservableComponent } from './http-observable/http-observable.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HttpPromiseComponent, SearchService } from './http-promise/http-promise
     ChildComponent,
     ParentComponent,
     HttpComponent,
-    HttpPromiseComponent
+    HttpPromiseComponent,
+    HttpObservableComponent
 ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import { HttpPromiseComponent, SearchService } from './http-promise/http-promise
   ],
   providers: [OtherService, SimpleService, SimpleProviderService],
   // these classes have to be imported in the import statement above
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
