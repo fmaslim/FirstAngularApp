@@ -23,6 +23,7 @@ import { HttpJsonpComponent } from './http-jsonp/http-jsonp.component';
 import { Jsonp, JsonpModule, Response } from '@angular/http';
 import { NavHomeComponent } from './nav-home/nav-home.component';
 import { NavHomeDynamicComponent } from './nav-home-dynamic/nav-home-dynamic.component';
+import { NavHomeRouterlinkComponent } from './nav-home-routerlink/nav-home-routerlink.component';
 
 import { Routes, RouterModule } from '@angular/router';
 
@@ -35,7 +36,7 @@ const routes: Routes = [
   // For the special case of an empty URL, need to add pathMatch: 'full' property so Angular knows
   // it should be matching exactly the empty string and not the partially empty string
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: NavHomeDynamicComponent },
+  { path: 'home', component: NavHomeRouterlinkComponent },
   { path: 'jsonp', redirectTo: 'httpjsonp' },
   { path: 'joke', component: JokeComponent },
   { path: 'injector', component: InjectorComponent },
@@ -68,9 +69,9 @@ const routes: Routes = [
     HttpPromiseComponent,
     HttpObservableComponent,
     HttpJsonpComponent,
-    NavHomeComponent
-,
-    NavHomeDynamicComponent
+    NavHomeComponent,
+    NavHomeDynamicComponent,
+    NavHomeRouterlinkComponent
 ],
   imports: [
     BrowserModule,
