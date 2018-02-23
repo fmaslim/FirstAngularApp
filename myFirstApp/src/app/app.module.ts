@@ -27,6 +27,9 @@ import { NavHomeRouterlinkComponent } from './nav-home-routerlink/nav-home-route
 import { NavHomeParamsComponent } from './nav-home-params/nav-home-params.component';
 
 import { Routes, RouterModule } from '@angular/router';
+import { ArtistComponent } from './Artist/Artist.component';
+import { ArtistTrackListComponent } from './ArtistTrackList/ArtistTrackList.component';
+import { ArtistAlbumListComponent } from './ArtistAlbumList/ArtistAlbumList.component';
 
 
 // In order for Angular to display certain components based on the requested URL,
@@ -49,6 +52,11 @@ const routes: Routes = [
   { path: 'httpjsonp', component: HttpJsonpComponent },
   { path: 'httpjsonp/:id', component: HttpJsonpComponent },
   { path: 'injectorprovider/:id', component: InjectorProviderComponent },
+  { path: 'artist/:artistId', component: ArtistComponent, children: [
+    { path: 'tracks', component: ArtistTrackListComponent },
+    { path: 'albums', component: ArtistAlbumListComponent },
+    { path: '**', redirectTo: 'tracks' },
+  ] },
   // This is a catch-all route that gets directed to if there is no match for the requested route
   { path: '**', component: HeaderComponent }
 ];
@@ -77,6 +85,10 @@ const routes: Routes = [
     NavHomeDynamicComponent,
     NavHomeRouterlinkComponent,
     NavHomeParamsComponent
+,
+    ArtistComponent,
+    ArtistTrackListComponent,
+    ArtistAlbumListComponent
 ],
   imports: [
     BrowserModule,
