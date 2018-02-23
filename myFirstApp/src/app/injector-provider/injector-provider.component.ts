@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 // Injectors can be configured in 3 different ways:
 // A. On NgModule
@@ -18,7 +19,9 @@ export class SimpleProviderService {
 })
 export class InjectorProviderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => console.log(params));
+  }
 
   ngOnInit() {
   }
