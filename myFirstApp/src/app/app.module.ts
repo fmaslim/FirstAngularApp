@@ -30,7 +30,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ArtistComponent } from './Artist/Artist.component';
 import { ArtistTrackListComponent } from './ArtistTrackList/ArtistTrackList.component';
 import { ArtistAlbumListComponent } from './ArtistAlbumList/ArtistAlbumList.component';
-
+import { NavRouterGuardsComponent, AlwaysAuthGuard, UnsavedChangesGuard } from './nav-router-guards/nav-router-guards.component';
+import { OnlyLoggedInUserGuard, AlwaysAuthGuardChild, UserService } from './nav-router-guards/nav-router-guards.component';
 
 // In order for Angular to display certain components based on the requested URL,
 // set up the mapping of URLs to Components via Route Configuration
@@ -40,7 +41,7 @@ const routes: Routes = [
   // For the special case of an empty URL, need to add pathMatch: 'full' property so Angular knows
   // it should be matching exactly the empty string and not the partially empty string
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: NavHomeParamsComponent },
+  { path: 'home', component: NavRouterGuardsComponent },
   { path: 'jsonp', redirectTo: 'httpjsonp' },
   { path: 'jsonp/:id', redirectTo: 'httpjsonp' },
   { path: 'joke', component: JokeComponent },
@@ -52,7 +53,19 @@ const routes: Routes = [
   { path: 'httpjsonp', component: HttpJsonpComponent },
   { path: 'httpjsonp/:id', component: HttpJsonpComponent },
   { path: 'injectorprovider/:id', component: InjectorProviderComponent },
-  { path: 'artist/:artistId', component: ArtistComponent, children: [
+  { path: 'artist', component: ArtistComponent,
+    canActivate: [AlwaysAuthGuard, OnlyLoggedInUserGuard], // This is an array; can have multiple guards at the same time
+    canActivateChild: [AlwaysAuthGuardChild],
+    canDeactivate: [UnsavedChangesGuard],
+    children: [
+    { path: 'tracks', component: ArtistTrackListComponent  },
+    { path: 'albums', component: ArtistAlbumListComponent },
+    { path: '**', redirectTo: 'tracks' },
+  ] },
+  { path: 'artist/:artistId', component: ArtistComponent,
+    canActivate: [AlwaysAuthGuard, OnlyLoggedInUserGuard], // This is an array; can have multiple guards at the same time
+    canActivateChild: [AlwaysAuthGuardChild],
+    children: [
     { path: 'tracks', component: ArtistTrackListComponent },
     { path: 'albums', component: ArtistAlbumListComponent },
     { path: '**', redirectTo: 'tracks' },
@@ -84,11 +97,11 @@ const routes: Routes = [
     NavHomeComponent,
     NavHomeDynamicComponent,
     NavHomeRouterlinkComponent,
-    NavHomeParamsComponent
-,
+    NavHomeParamsComponent,
     ArtistComponent,
     ArtistTrackListComponent,
-    ArtistAlbumListComponent
+    ArtistAlbumListComponent,
+    NavRouterGuardsComponent
 ],
   imports: [
     BrowserModule,
@@ -96,9 +109,12 @@ const routes: Routes = [
     FormsModule, // this needs to be imported here. Otherwise, the <form></form> tag will not be recognized.
     HttpModule,
     JsonpModule,
-    RouterModule.forRoot(routes, { useHash: true }) // useHash is for Path Location Strategies
+    RouterModule.forRoot(routes, { useHash: true }), // useHash is for Path Location Strategies
   ],
-  providers: [OtherService, SimpleService, SimpleProviderService],
+  providers: [OtherService, SimpleService,
+              SimpleProviderService, AlwaysAuthGuard,
+              OnlyLoggedInUserGuard, UserService,
+              AlwaysAuthGuardChild, UnsavedChangesGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

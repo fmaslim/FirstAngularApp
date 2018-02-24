@@ -12,4 +12,7 @@ export class ArtistTrackListComponent implements OnInit {
   ngOnInit() {
   }
 
+  canDeactivate() {
+    return false;
+  }
 }
